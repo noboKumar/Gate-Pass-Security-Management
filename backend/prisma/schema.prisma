@@ -26,8 +26,7 @@ model EmployeeGatePass {
   employeeName String
   department   String
   reason       String
-  exitTime     DateTime
-  returnTime   DateTime?
+  exitTime     DateTime?
   status       GatePassStatus @default(PENDING)
   createdAt    DateTime       @default(now())
 }
