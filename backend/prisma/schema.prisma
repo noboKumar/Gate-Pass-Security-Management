@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  ADMIN
+  SECURITY
+  HOST
+  VISITOR
+}
+
+enum PassStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  EXPIRED
+}
+
+model User {
+  id        String     @id @default(uuid())
+  email     String     @unique
+  password  String
+  name      String
+  role      Role       @default(HOST)
+  passes    GatePass[] @relation("HostPasses")
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model GatePass {
+  id             String     @id @default(uuid())
+  visitorName    String
+  visitorEmail   String
+  visitorPhone   String?
+  visitorCompany String?
+  purpose        String
+  hostId         String
+  host           User       @relation("HostPasses", fields: [hostId], references: [id])
+  status         PassStatus @default(PENDING)
+  checkInTime    DateTime?
+  checkOutTime   DateTime?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+}
