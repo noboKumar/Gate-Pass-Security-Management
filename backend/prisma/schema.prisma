@@ -23,7 +23,6 @@ model Visitor {
 
 model EmployeeGatePass {
   id           String         @id @default(cuid())
-  employeeId   String         @unique
   employeeName String
   department   String
   reason       String
