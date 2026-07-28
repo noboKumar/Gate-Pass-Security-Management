@@ -13,9 +13,6 @@ export default function Hero() {
         <button className="rounded-md bg-blue-500 px-4 py-2 text-white">
           Get Started
         </button>
-        <button className="ml-4 rounded-md border border-blue-500 px-4 py-2">
-          Learn More
-        </button>
       </div>
     </div>
   );
