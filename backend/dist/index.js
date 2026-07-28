@@ -7,11 +7,16 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const prisma_1 = require("./lib/prisma");
+const visitors_route_1 = __importDefault(require("./modules/visitors/visitors.route"));
+const employees_route_1 = __importDefault(require("./modules/employees/employees.route"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 5000;
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
+// Register API Routes
+app.use('/api/visitors', visitors_route_1.default);
+app.use('/api/gate-passes', employees_route_1.default);
 // Health Check Endpoint
 app.get('/health', async (_req, res) => {
     try {

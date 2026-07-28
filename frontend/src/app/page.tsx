@@ -1,6 +1,16 @@
 "use client";
 
 import React, { useEffect } from "react";
+import {
+  ArrowRight,
+  UserPlus,
+  QrCode,
+  History,
+  ClipboardCheck,
+  LayoutDashboard,
+  ArrowUpDown,
+  BarChart3,
+} from "lucide-react";
 
 export default function Home() {
   useEffect(() => {
@@ -85,9 +95,7 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
                 <button className="bg-primary text-on-primary px-8 py-4 rounded-xl font-headline-md text-body-md shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
                   Get Started
-                  <span className="material-symbols-outlined">
-                    arrow_forward
-                  </span>
+                  <ArrowRight className="h-5 w-5" />
                 </button>
                 <button className="bg-white border border-slate-200 text-on-surface-variant px-8 py-4 rounded-xl font-headline-md text-body-md hover:bg-slate-50 transition-all flex items-center justify-center gap-2">
                   Explore Features
@@ -115,9 +123,7 @@ export default function Home() {
               <div className="md:col-span-2 group relative overflow-hidden bg-white p-stack-lg rounded-2xl border border-slate-200 hover:border-primary/30 transition-all">
                 <div className="relative z-10 flex flex-col h-full justify-between">
                   <div className="w-14 h-14 bg-primary rounded-xl flex items-center justify-center mb-6 text-on-primary">
-                    <span className="material-symbols-outlined text-[32px]">
-                      app_registration
-                    </span>
+                    <UserPlus className="h-8 w-8" />
                   </div>
                   <div>
                     <h3 className="text-title-lg font-bold mb-2">
@@ -129,19 +135,15 @@ export default function Home() {
                     </p>
                   </div>
                 </div>
-                <div className="absolute right-[-10%] bottom-[-10%] w-64 h-64 opacity-5 group-hover:opacity-10 transition-opacity">
-                  <span className="material-symbols-outlined text-[300px]">
-                    qr_code_2
-                  </span>
+                <div className="absolute right-[-5%] bottom-[-5%] w-48 h-48 opacity-5 group-hover:opacity-10 transition-opacity text-primary">
+                  <QrCode className="w-full h-full" />
                 </div>
               </div>
 
               {/* Card 2: History */}
               <div className="group bg-surface-container-low p-stack-lg rounded-2xl border border-slate-200 hover:shadow-xl hover:shadow-primary/5 transition-all">
                 <div className="w-14 h-14 bg-secondary rounded-xl flex items-center justify-center mb-6 text-on-secondary">
-                  <span className="material-symbols-outlined text-[32px]">
-                    history
-                  </span>
+                  <History className="h-8 w-8" />
                 </div>
                 <h3 className="text-title-lg font-bold mb-2">
                   Visitor History
@@ -155,9 +157,7 @@ export default function Home() {
               {/* Card 3: Gate Pass */}
               <div className="group bg-surface-container-low p-stack-lg rounded-2xl border border-slate-200 hover:shadow-xl hover:shadow-primary/5 transition-all">
                 <div className="w-14 h-14 bg-tertiary rounded-xl flex items-center justify-center mb-6 text-on-tertiary">
-                  <span className="material-symbols-outlined text-[32px]">
-                    fact_check
-                  </span>
+                  <ClipboardCheck className="h-8 w-8" />
                 </div>
                 <h3 className="text-title-lg font-bold mb-2">
                   Employee Gate Pass
@@ -172,9 +172,7 @@ export default function Home() {
               <div className="md:col-span-2 group relative overflow-hidden bg-deep-navy text-white p-stack-lg rounded-2xl transition-all">
                 <div className="relative z-10 flex flex-col h-full justify-between">
                   <div className="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center mb-6 text-white">
-                    <span className="material-symbols-outlined text-[32px]">
-                      monitoring
-                    </span>
+                    <LayoutDashboard className="h-8 w-8 text-white" />
                   </div>
                   <div>
                     <h3 className="text-title-lg font-bold mb-2">
@@ -204,9 +202,7 @@ export default function Home() {
               {/* Card 5: In/Out */}
               <div className="group bg-white p-stack-lg rounded-2xl border border-slate-200 hover:border-primary/30 transition-all">
                 <div className="w-14 h-14 bg-primary-container rounded-xl flex items-center justify-center mb-6 text-on-primary-container">
-                  <span className="material-symbols-outlined text-[32px]">
-                    swipe_vertical
-                  </span>
+                  <ArrowUpDown className="h-8 w-8" />
                 </div>
                 <h3 className="text-title-lg font-bold mb-2">Check-In/Out</h3>
                 <p className="text-body-md text-on-surface-variant">
@@ -219,9 +215,7 @@ export default function Home() {
               <div className="md:col-span-2 group relative overflow-hidden bg-white p-stack-lg rounded-2xl border border-slate-200 hover:border-primary/30 transition-all">
                 <div className="flex flex-col md:flex-row items-start md:items-center gap-8">
                   <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0 text-primary">
-                    <span className="material-symbols-outlined text-[32px]">
-                      analytics
-                    </span>
+                    <BarChart3 className="h-8 w-8" />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-title-lg font-bold mb-2">
