@@ -12,7 +12,7 @@ datasource db {
 model Visitor {
   id           String    @id @default(cuid())
   name         String
-  mobile       String    @unique
+  mobile       String
   company      String?
   purpose      String
   personToMeet String
