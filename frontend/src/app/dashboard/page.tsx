@@ -310,9 +310,7 @@ export default function DashboardPage() {
     if (!query.trim()) return;
     setIsSearchingMobile(true);
     try {
-      const res = await fetch(
-        `${API_URL}/visitors?mobile=${query}`,
-      );
+      const res = await fetch(`${API_URL}/visitors?mobile=${query}`);
       if (res.ok) {
         const data = await res.json();
         setMobileSearchResults(data);
@@ -385,7 +383,7 @@ export default function DashboardPage() {
             <ShieldCheck className="h-6 w-6 text-blue-600" />
             <Link
               href={"/"}
-              className="font-bold tracking-tight text-slate-900 text-lg"
+              className="font-bold tracking-tight text-slate-900 text-lg line-clamp-1"
             >
               Gate Pass Security Management
             </Link>

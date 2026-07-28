@@ -11,6 +11,7 @@ import {
   ArrowUpDown,
   BarChart3,
 } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   useEffect(() => {
@@ -92,14 +93,18 @@ export default function Home() {
                 <br />
                 and office access from one centralized, high-fidelity platform.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-                <button className="bg-primary text-on-primary px-8 py-4 rounded-xl font-headline-md text-body-md shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
-                  Get Started
-                  <ArrowRight className="h-5 w-5" />
-                </button>
-                <button className="bg-white border border-slate-200 text-on-surface-variant px-8 py-4 rounded-xl font-headline-md text-body-md hover:bg-slate-50 transition-all flex items-center justify-center gap-2">
-                  Explore Features
-                </button>
+              <div className="flex flex-col sm:flex-row items-center gap-4 justify-center pt-4">
+                <Link href={"/login"}>
+                  <button className="bg-primary text-on-primary px-8 py-4 rounded-xl font-headline-md text-body-md shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all flex items-center justify-center gap-2 cursor-pointer">
+                    Get Started
+                    <ArrowRight className="h-5 w-5" />
+                  </button>
+                </Link>
+                <Link href={"#features"}>
+                  <button className="bg-white border border-slate-200 text-on-surface-variant px-8 py-4 rounded-xl font-headline-md text-body-md hover:bg-slate-50 transition-all flex items-center justify-center gap-2 cursor-pointer">
+                    Explore Features
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

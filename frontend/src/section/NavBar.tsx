@@ -14,7 +14,7 @@ export default function NavBar() {
         <div className="flex md:flex-1 items-center gap-2">
           <Link href="/" className="flex items-center gap-2">
             <ShieldCheck className="h-6 w-6 text-blue-600" />
-            <span className="text-lg font-bold tracking-tight text-foreground sm:text-xl">
+            <span className="text-lg font-bold tracking-tight text-foreground sm:text-xl line-clamp-1">
               Gate Pass Security Management
             </span>
           </Link>
