@@ -30,8 +30,11 @@ import {
   RefreshCw,
   Clock3,
   LayoutDashboard,
+  UserStar,
 } from "lucide-react";
 import Link from "next/link";
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -73,7 +76,7 @@ export default function DashboardPage() {
   // Fetch Data functions
   const fetchVisitors = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/visitors");
+      const res = await fetch(`${API_URL}/visitors`);
       if (res.ok) {
         const data = await res.json();
         setVisitors(data);
@@ -85,7 +88,7 @@ export default function DashboardPage() {
 
   const fetchGatePasses = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/gate-passes");
+      const res = await fetch(`${API_URL}/gate-passes`);
       if (res.ok) {
         const data = await res.json();
         setGatePasses(data);
@@ -131,7 +134,7 @@ export default function DashboardPage() {
 
     setVisitorFormLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/visitors", {
+      const res = await fetch(`${API_URL}/visitors`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -170,7 +173,7 @@ export default function DashboardPage() {
   // Check out visitor
   const handleVisitorCheckOut = async (id: string) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/visitors/${id}`, {
+      const res = await fetch(`${API_URL}/visitors/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -198,7 +201,7 @@ export default function DashboardPage() {
     if (!confirm("Are you sure you want to delete this visitor record?"))
       return;
     try {
-      const res = await fetch(`http://localhost:5000/api/visitors/${id}`, {
+      const res = await fetch(`${API_URL}/visitors/${id}`, {
         method: "DELETE",
       });
       if (res.ok) {
@@ -227,7 +230,7 @@ export default function DashboardPage() {
 
     setEmpFormLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/gate-passes", {
+      const res = await fetch(`${API_URL}/gate-passes`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -264,7 +267,7 @@ export default function DashboardPage() {
         updatePayload.exitTime = new Date().toISOString();
       }
 
-      const res = await fetch(`http://localhost:5000/api/gate-passes/${id}`, {
+      const res = await fetch(`${API_URL}/gate-passes/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatePayload),
@@ -288,7 +291,7 @@ export default function DashboardPage() {
     if (!confirm("Are you sure you want to delete this employee gate pass?"))
       return;
     try {
-      const res = await fetch(`http://localhost:5000/api/gate-passes/${id}`, {
+      const res = await fetch(`${API_URL}/gate-passes/${id}`, {
         method: "DELETE",
       });
       if (res.ok) {
@@ -308,7 +311,7 @@ export default function DashboardPage() {
     setIsSearchingMobile(true);
     try {
       const res = await fetch(
-        `http://localhost:5000/api/visitors?mobile=${query}`,
+        `${API_URL}/visitors?mobile=${query}`,
       );
       if (res.ok) {
         const data = await res.json();
@@ -379,16 +382,13 @@ export default function DashboardPage() {
       <header className="sticky top-0 z-50 w-full border-b border-slate-100 bg-white/95 backdrop-blur-md">
         <div className="mx-auto flex h-16 items-center justify-between px-6">
           <div className="flex items-center gap-3">
-            <ShieldCheck className="h-6 w-6 text-blue-600 animate-pulse" />
+            <ShieldCheck className="h-6 w-6 text-blue-600" />
             <Link
               href={"/"}
               className="font-bold tracking-tight text-slate-900 text-lg"
             >
-              Gate Pass Management
+              Gate Pass Security Management
             </Link>
-            <span className="hidden sm:inline-flex items-center rounded-md bg-blue-50 px-2 py-0.5 text-xs font-semibold text-blue-700 ring-1 ring-inset ring-blue-700/10">
-              v1.0.0
-            </span>
           </div>
 
           <div className="flex items-center gap-4">
@@ -465,9 +465,9 @@ export default function DashboardPage() {
         >
           <div className="p-6 hidden md:flex items-center justify-between border-b border-slate-100">
             <div className="flex items-center gap-2">
-              <ShieldCheck className="h-6 w-6 text-blue-600 animate-pulse" />
+              <UserStar className="" />
               <span className="font-bold text-slate-900 tracking-tight text-md">
-                Gate Admin Panel
+                Admin Panel
               </span>
             </div>
           </div>
@@ -484,7 +484,7 @@ export default function DashboardPage() {
                     setActiveTab(link.id);
                     setIsMobileSidebarOpen(false);
                   }}
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-250
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-250 cursor-pointer
                   ${
                     isActive
                       ? "bg-blue-50 text-blue-600 shadow-xs"
@@ -508,7 +508,7 @@ export default function DashboardPage() {
                   router.push("/login");
                 }
               }}
-              className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-rose-600 hover:bg-rose-50/50 hover:text-rose-700 transition-colors"
+              className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-rose-600 hover:bg-rose-50/50 hover:text-rose-700 transition-colors cursor-pointer"
             >
               <LogOut className="h-5 w-5" />
               Sign Out
@@ -524,10 +524,6 @@ export default function DashboardPage() {
               {/* Top Info Banner */}
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-6">
                 <div>
-                  <div className="flex items-center gap-2 text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full w-fit mb-2">
-                    <Sparkles className="h-3.5 w-3.5" />
-                    <span>Real-time Status Feed</span>
-                  </div>
                   <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
                     Security Overview
                   </h2>
@@ -674,7 +670,7 @@ export default function DashboardPage() {
                 <div className="bg-white border border-slate-100 shadow-xs rounded-2xl p-6 flex flex-col justify-between">
                   <div>
                     <div className="flex items-center gap-2 border-b border-slate-100 pb-3">
-                      <AlertCircle className="h-5 w-5 text-amber-500 animate-bounce" />
+                      <AlertCircle className="h-5 w-5 text-amber-500" />
                       <h3 className="font-bold text-slate-900 text-md">
                         Security Advisory
                       </h3>
